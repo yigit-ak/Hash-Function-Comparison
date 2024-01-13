@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Part1 {
@@ -11,11 +12,15 @@ public class Part1 {
          */
 
         try {
+            File quadraticFile = new File("quadratic-results.txt");
+            quadraticFile.createNewFile();
+            FileWriter quadraticWriter = new FileWriter("quadratic-results.txt");
             for (int c1 = 1; c1 <= GREATEST_PRIME_LESS_THAN_TABLE_SIZE; c1 += GREATEST_PRIME_LESS_THAN_TABLE_SIZE
-                    / 10) {
+                    / 20) {
                 for (int c2 = 1; c2 <= GREATEST_PRIME_LESS_THAN_TABLE_SIZE; c2 += GREATEST_PRIME_LESS_THAN_TABLE_SIZE
-                        / 10) {
+                        / 20) {
                     System.out.print("" + c1 + "\t" + c2);
+                    quadraticWriter.write("" + c1 + "\t" + c2);
                     for (int datasetNo = 0; datasetNo < 10; datasetNo++) {
                         QuadraticProbingHashTable hashTable = new QuadraticProbingHashTable(
                                 TABLE_SIZE, c1, c2);
@@ -35,10 +40,14 @@ public class Part1 {
                         }
 
                         System.out.print("\t" + (insertionTimeOfDataset / 600000));
+                        quadraticWriter.write("\t" + (insertionTimeOfDataset / 600000));
                     }
                     System.out.print("\n");
+                    quadraticWriter.write("\n");
+                    quadraticWriter.flush();
                 }
             }
+            quadraticWriter.close();
         } catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
