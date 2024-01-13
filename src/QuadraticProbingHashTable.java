@@ -14,16 +14,17 @@ public class QuadraticProbingHashTable {
     }
 
     private int hashFunction(int key) {
-        return key % capacity;
+        return (capacity + key) % capacity;
     }
 
     public void insert(int key) {
         int index = hashFunction(key);
-        int i = 1;
+        int i = 0;
 
         while (isOccupied[index]) {
             // Çakışma durumu: Quadratic probing kullanarak bir sonraki hücreyi bulana kadar
             // devam et
+            System.out.println("COLLUSION! " + key + "=" + index + ", " + table[index]);
             index = (index + c1 * i + c2 * i * i) % capacity;
             i++;
         }
