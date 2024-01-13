@@ -1,3 +1,6 @@
+import java.io.File;
+import java.util.Scanner;
+
 public class DoubleHashingHashTable {
     private int capacity;
     private int[] table;
@@ -22,11 +25,15 @@ public class DoubleHashingHashTable {
     public void insert(int key) {
         int index = hashFunction1(key);
         int step = hashFunction2(key);
-
+        int i = 0;
         while (isOccupied[index]) {
             // Çakışma durumu: Double hashing kullanarak bir sonraki hücreyi bulana kadar
             // devam et
-            index = (index + step) % capacity;
+            index = (index + i * step) % capacity;
+            if (index < 0) {
+                index += capacity;
+            }
+            i++;
         }
 
         // Veriyi tabloya ekle
@@ -37,7 +44,7 @@ public class DoubleHashingHashTable {
     public boolean search(int key) {
         int index = hashFunction1(key);
         int step = hashFunction2(key);
-
+        int i = 0;
         while (isOccupied[index]) {
             if (table[index] == key) {
                 // Aranan değeri bulduk
@@ -45,7 +52,8 @@ public class DoubleHashingHashTable {
             }
 
             // Çakışma durumu: Double hashing kullanarak bir sonraki hücreye git
-            index = (index + step) % capacity;
+            index = (index + i * step) % capacity;
+            i++;
         }
 
         // Aranan değer tabloda bulunamadı

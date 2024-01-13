@@ -45,10 +45,13 @@ public class Part1 {
                 999431, 999433, 999437, 999451, 999491, 999499, 999521, 999529, 999541, 999553, 999563, 999599, 999611,
                 999613, 999623, 999631, 999653, 999667, 999671, 999683, 999721, 999727, 999749, 999763, 999769, 999773,
                 999809, 999853, 999863, 999883, 999907, 999917, 999931, 999953, 999959, 999961, 999979, 999983 };
+
         /*
          * TEST CASE 1: comparing different coefficient values of quadratic hash
          * functions
          */
+/*
+
 
         try {
             File quadraticFile = new File("quadratic-results.txt");
@@ -92,15 +95,38 @@ public class Part1 {
             e.printStackTrace();
             System.exit(1);
         }
-
+*/
         /* TEST CASE 2: comparing different R values for double hashing */
         try {
             File doubleFile = new File("double-results.txt");
             doubleFile.createNewFile();
             FileWriter doubleWriter = new FileWriter("double-results.txt");
             for (int i = 0; i < 500; i++) {
-                // eren, yukarıdaki arraydaki değerleri tek tek run edebilirsin
-                // ben zamanı ölçmek için System.nano() kullandım.
+                System.out.print("" + GREATEST_PRIMES_LESS_THAN_TABLE_SIZE[i] + "\t");
+                doubleWriter.write("" + i + "\t");
+                for (int datasetNo = 0; datasetNo < 10; datasetNo++) {
+                    DoubleHashingHashTable double_hashTable = new DoubleHashingHashTable(TABLE_SIZE, GREATEST_PRIMES_LESS_THAN_TABLE_SIZE[i]);
+                    double insertionTimeOfDataset = 0;
+                    try {
+                        File datasetFile = new File("datasets/dataset" + datasetNo + ".txt");
+                        Scanner fileReader = new Scanner(datasetFile);
+                        double startTime = System.nanoTime();
+                        while (fileReader.hasNextInt()) {
+                            double_hashTable.insert(fileReader.nextInt());
+                        }
+                        insertionTimeOfDataset = System.nanoTime() - startTime;
+                    } catch (Exception e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                        System.exit(1);
+                    }
+
+                    System.out.print("\t" + (insertionTimeOfDataset / 600000));
+                    doubleWriter.write("\t" + (insertionTimeOfDataset / 600000));
+                }
+                System.out.print("\n");
+                doubleWriter.write("\n");
+                doubleWriter.flush();
             }
         } catch (Exception e) {
             System.out.println("An error occurred.");
