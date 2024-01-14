@@ -49,14 +49,13 @@ public class Part1 {
         }
 
         /* TEST CASE 2: comparing different R values for double hashing */
-
         try {
             File doubleFile = new File("double-results.txt");
             doubleFile.createNewFile();
             FileWriter doubleWriter = new FileWriter("double-results.txt");
             for (int i = 0; i < 500; i++) {
                 System.out.print("" + Constants.GREATEST_PRIMES_LESS_THAN_TABLE_SIZE[i] + "\t");
-                doubleWriter.write("" + i + "\t");
+                doubleWriter.write("" + Constants.GREATEST_PRIMES_LESS_THAN_TABLE_SIZE[i] + "\t");
                 for (int datasetNo = 0; datasetNo < 10; datasetNo++) {
                     DoubleHashingHashTable double_hashTable = new DoubleHashingHashTable(
                             Constants.TABLE_SIZE,
