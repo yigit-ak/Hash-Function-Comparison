@@ -45,11 +45,8 @@ public class Part2 {
         try {
             int c1 = 349994;
             int c2 = 399993;
-            // File quadraticFile = new File("quadratic-results.txt");
-            quadraticFile.createNewFile();
             FileWriter quadraticWriter = new FileWriter("part-2-results.txt", true);
             System.out.print("Quadratic Probing Result for c1=349994 and c2=399993: ");
-            // quadraticWriter.write("" + c1 + "\t" + c2);
 
             QuadraticProbingHashTable hashTable = new QuadraticProbingHashTable(
                     Constants.TABLE_SIZE, c1, c2);
@@ -84,11 +81,8 @@ public class Part2 {
 
         /* TEST CASE 3: comparing different R values for double hashing */
         try {
-            // File doubleFile = new File("double-results.txt");
-            // quadraticFile.createNewFile();
 
             int R = 999727;
-
             FileWriter doubleWriter = new FileWriter("part-2-results.txt", true);
 
             System.out.print("Double Hashing Result for R=999727: ");
@@ -126,8 +120,6 @@ public class Part2 {
 
         /* TEST CASE 4: */
         try {
-            // File cuckooFile = new File("cuckoo-results.txt");
-            // cuckooFile.createNewFile();
             FileWriter cuckooWriter = new FileWriter("part-2-results.txt", true);
 
             cuckooWriter.write("Cuckoo Hashing Result for hash functions 1 and 2: ");
