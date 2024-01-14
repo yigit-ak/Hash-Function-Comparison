@@ -1,0 +1,5 @@
+Linear Probing Result: 706.7676666666666
+Quadratic Probing Result for c1=349994 and c2=399993: 568.7685
+Double Hashing Result for R=999727: 	463.884
+Cuckoo Hashing Result for hash functions 1 and 2: 	458.2518333333333
+unsuccessful insert per iteration:	0
