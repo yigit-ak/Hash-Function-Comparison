@@ -1,6 +1,3 @@
-import java.io.File;
-import java.util.Scanner;
-
 public class DoubleHashingHashTable {
     private int capacity;
     private int[] table;
